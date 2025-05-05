@@ -1,1 +1,27 @@
+version: 0.2
 
+phases:
+  install:
+    commands:
+      - echo "Installing Composer dependencies..."
+      - curl -sS https://getcomposer.org/installer | php
+      - php composer.phar install --no-dev --optimize-autoloader
+      - echo "Setting permissions..."
+      - chmod -R 755 .
+      - chmod -R 777 storage bootstrap/cache
+
+  pre_build:
+    commands:
+      - echo "Running Laravel setup steps..."
+      - cp .env.example .env || true
+      - php artisan key:generate || true
+
+  build:
+    commands:
+      - echo "Build complete. Laravel app is ready."
+
+artifacts:
+  files:
+    - '/*'
+  base-directory: .
+  discard-paths: no
