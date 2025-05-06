@@ -6,7 +6,6 @@ phases:
       - echo "Installing Composer dependencies..."
       - curl -sS https://getcomposer.org/installer | php
       - php composer.phar install --no-dev --optimize-autoloader
-      - echo "Setting permissions..."
       - chmod -R 755 .
       - chmod -R 777 storage bootstrap/cache
 
@@ -14,7 +13,7 @@ phases:
     commands:
       - echo "Running Laravel setup steps..."
       - cp .env.example .env || true
-      - $ APP_KEY=$(php artisan key:generate --show --no-interaction) || true
+      - php artisan key:generate || true
 
   build:
     commands:
@@ -23,5 +22,6 @@ phases:
 artifacts:
   files:
     - '/*'
+    - .env
   base-directory: .
-  discard-paths: no
+  discard-paths: no 
