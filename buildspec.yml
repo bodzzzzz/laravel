@@ -23,5 +23,3 @@ artifacts:
   files:
     - '/*'
     - '.env'
-  base-directory: .
-  discard-paths: false
