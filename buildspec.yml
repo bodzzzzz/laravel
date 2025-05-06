@@ -14,7 +14,7 @@ phases:
     commands:
       - echo "Running Laravel setup steps..."
       - cp .env.example .env || true
-      - sudo php artisan key:generate || true
+      - $ APP_KEY=$(php artisan key:generate --show --no-interaction) || true
 
   build:
     commands:
