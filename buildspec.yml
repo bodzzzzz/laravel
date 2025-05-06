@@ -24,4 +24,4 @@ artifacts:
     - '/*'
     - .env
   base-directory: .
-  discard-paths: no 
+  discard-paths: false
