@@ -12,16 +12,20 @@ phases:
 
   pre_build:
     commands:
-      - echo "Running Laravel setup steps..."
-      - test -f .env || cp .env.example .env
-      - php artisan cache:clear
-      - php artisan config:clear
-      - php artisan route:clear
-      - php artisan view:clear
-      - php artisan key:generate --force
-      - php artisan config:cache
-      - php artisan view:cache
-      - php artisan route:cache
+    - echo "Running Laravel setup..."
+    - test -f .env || cp .env.example .env
+    - php artisan key:generate --force
+    - mkdir -p bootstrap/cache
+    - chmod -R 775 bootstrap/cache
+    - chown -R webapp:webapp bootstrap/cache
+    - rm -f bootstrap/cache/*.php
+    - php artisan config:clear
+    - php artisan cache:clear
+    - php artisan route:clear
+    - php artisan view:clear
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
 
   build:
     commands:
