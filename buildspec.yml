@@ -23,6 +23,7 @@ phases:
     - php artisan config:clear || true
     - php artisan view:clear || true
     - php artisan route:clear || true
+    - rm -f bootstrap/cache/routes-v7.php
     - (php artisan cache:clear || true)
     # Optimize
     - php artisan config:cache
